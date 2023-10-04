@@ -1,5 +1,6 @@
 defmodule LifelineElixir.Patients.Patient do
   use Ecto.Schema
+
   import Ecto.Changeset
 
   schema "patients" do
@@ -11,6 +12,7 @@ defmodule LifelineElixir.Patients.Patient do
     field :weight, :string
 
     belongs_to :user, LifelineElixir.Accounts.User
+    has_many :drugallergies, LifelineElixir.Drugallergies.Drugallergy
 
     timestamps()
   end

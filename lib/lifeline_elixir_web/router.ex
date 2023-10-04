@@ -86,6 +86,16 @@ defmodule LifelineElixirWeb.Router do
 
     live "/patients/:id", PatientLive.Show, :show
     live "/patients/:id/show/edit", PatientLive.Show, :edit
+
+    live "/patients/:id/add_allergy", PatientLive.Show, :add_allergy
+    live "/patients/:id/add_allergy/:allergy_id/edit", PatientLive.Show, :edit_allergy
+
+    live "/drugallergies", DrugallergyLive.Index, :index
+    live "/drugallergies/new", DrugallergyLive.Index, :new
+    live "/drugallergies/:id/edit", DrugallergyLive.Index, :edit
+
+    live "/drugallergies/:id", DrugallergyLive.Show, :show
+    live "/drugallergies/:id/show/edit", DrugallergyLive.Show, :edit
   end
 
   scope "/", LifelineElixirWeb do
