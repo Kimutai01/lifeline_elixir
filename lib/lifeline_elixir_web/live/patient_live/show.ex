@@ -4,6 +4,7 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   alias LifelineElixir.Drugallergies
   alias LifelineElixir.Patients
   alias LifelineElixir.Foodallergies.Foodallergy
+  alias LifelineElixir.Foodallergies
 
   @impl true
   def mount(params, _session, socket) do
@@ -14,10 +15,16 @@ defmodule LifelineElixirWeb.PatientLive.Show do
       %Drugallergy{}
     end
 
+    food_allergy = if params["food_allergy_id"] do
+      Foodallergies.get_foodallergy!(params["food_allergy_id"])
+    else
+      %Foodallergy{}
+    end
+
     {:ok,
     socket
     |> assign(:drugallergy, drug_allergy)
-    |> assign(:foodallergy, %Foodallergy{})}
+    |> assign(:foodallergy, food_allergy)}
   end
 
   @impl true
@@ -33,11 +40,15 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   @impl true
   def handle_event("delete",params,socket) do
     drug_allergy = Drugallergies.get_drugallergy!(params["id"])
+    food_allergy = Foodallergies.get_foodallergy!(params["id"])
     {:ok, _} = Drugallergies.delete_drugallergy(drug_allergy)
+    {:ok, _} = Foodallergies.delete_foodallergy(food_allergy)
     {:noreply,
     socket
       |> assign(:drugallergy, Drugallergies.list_drugallergies())
-      |> assign(:patient, Patients.get_patient!(socket.assigns.patient_id))}
+      |> assign(:patient, Patients.get_patient!(socket.assigns.patient_id))
+      |> assign(:foodallergy, Foodallergies.list_foodallergies())}
+
 
   end
 
@@ -48,4 +59,5 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   defp page_title(:add_allergy), do: "Add Allergy"
   defp page_title(:edit_allergy), do: "Edit Allergy"
   defp page_title(:add_food_allergy), do: "Add Food Allergy"
+  defp page_title(:edit_food_allergy), do: "Edit Food Allergy"
 end

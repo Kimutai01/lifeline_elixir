@@ -27,7 +27,7 @@ defmodule LifelineElixirWeb.FoodallergyLive.FormComponent do
     save_foodallergy(socket, socket.assigns.action, foodallergy_params)
   end
 
-  defp save_foodallergy(socket, :edit, foodallergy_params) do
+  defp save_foodallergy(socket, :edit_food_allergy, foodallergy_params) do
     case Foodallergies.update_foodallergy(socket.assigns.foodallergy, foodallergy_params) do
       {:ok, _foodallergy} ->
         {:noreply,

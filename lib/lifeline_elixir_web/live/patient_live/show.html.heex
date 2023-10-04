@@ -27,7 +27,7 @@
   </.modal>
 <% end %>
 
-<%= if @live_action in [:add_food_allergy] do %>
+<%= if @live_action in [:add_food_allergy, :edit_food_allergy] do %>
   <.modal return_to={Routes.patient_show_path(@socket, :show, @patient)}>
     <.live_component
       module={LifelineElixirWeb.FoodallergyLive.FormComponent}
@@ -85,6 +85,17 @@
      <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: drug.id, data: [confirm: "Are you sure?"] %></span>
   <% end %>
   
+  <%= for food <- @patient.foodallergies do %>
+    <li>
+      <strong>Food allergies:</strong>
+      <%= food.name %>
+       
+     
+    </li>
+
+     <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_food_allergy,@patient.id, food) %>
+     <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: food.id, data: [confirm: "Are you sure?"] %></span>
+  <% end %>
 
 </ul>
 
