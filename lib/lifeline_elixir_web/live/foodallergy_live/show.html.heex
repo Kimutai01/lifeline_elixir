@@ -1,0 +1,26 @@
+<h1>Show Foodallergy</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.foodallergy_show_path(@socket, :show, @foodallergy)}>
+    <.live_component
+      module={LifelineElixirWeb.FoodallergyLive.FormComponent}
+      id={@foodallergy.id}
+      title={@page_title}
+      action={@live_action}
+      foodallergy={@foodallergy}
+      return_to={Routes.foodallergy_show_path(@socket, :show, @foodallergy)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @foodallergy.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.foodallergy_show_path(@socket, :edit, @foodallergy), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.foodallergy_index_path(@socket, :index) %></span>

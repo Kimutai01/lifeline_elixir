@@ -13,6 +13,7 @@ defmodule LifelineElixir.Patients.Patient do
 
     belongs_to :user, LifelineElixir.Accounts.User
     has_many :drugallergies, LifelineElixir.Drugallergies.Drugallergy
+    has_many :foodallergies, LifelineElixir.Foodallergies.Foodallergy
 
     timestamps()
   end

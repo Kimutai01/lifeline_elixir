@@ -3,6 +3,7 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   use LifelineElixirWeb, :live_view
   alias LifelineElixir.Drugallergies
   alias LifelineElixir.Patients
+  alias LifelineElixir.Foodallergies.Foodallergy
 
   @impl true
   def mount(params, _session, socket) do
@@ -15,7 +16,8 @@ defmodule LifelineElixirWeb.PatientLive.Show do
 
     {:ok,
     socket
-    |> assign(:drugallergy, drug_allergy)}
+    |> assign(:drugallergy, drug_allergy)
+    |> assign(:foodallergy, %Foodallergy{})}
   end
 
   @impl true
@@ -45,4 +47,5 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   defp page_title(:edit), do: "Edit Patient"
   defp page_title(:add_allergy), do: "Add Allergy"
   defp page_title(:edit_allergy), do: "Edit Allergy"
+  defp page_title(:add_food_allergy), do: "Add Food Allergy"
 end

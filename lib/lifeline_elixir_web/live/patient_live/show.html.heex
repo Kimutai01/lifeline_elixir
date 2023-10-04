@@ -27,6 +27,20 @@
   </.modal>
 <% end %>
 
+<%= if @live_action in [:add_food_allergy] do %>
+  <.modal return_to={Routes.patient_show_path(@socket, :show, @patient)}>
+    <.live_component
+      module={LifelineElixirWeb.FoodallergyLive.FormComponent}
+      id={@foodallergy.id || :new}
+      title={@page_title}
+      action={@live_action}
+      foodallergy={@foodallergy}
+      patient={@patient}
+      return_to={Routes.patient_show_path(@socket, :show, @patient)}
+    />
+  </.modal>
+<% end %>
+
 <ul>
 
   <li>
