@@ -2,8 +2,6 @@ import Config
 
 # Configure your database
 config :lifeline_elixir, LifelineElixir.Repo,
-  username: "postgres",
-  password: "postgres",
   hostname: "localhost",
   database: "lifeline_elixir_dev",
   stacktrace: true,
