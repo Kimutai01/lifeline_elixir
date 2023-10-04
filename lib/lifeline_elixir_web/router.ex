@@ -94,6 +94,7 @@ defmodule LifelineElixirWeb.Router do
 
     live "/patients/:id/add_food_allergy/:food_allergy_id/edit", PatientLive.Show, :edit_food_allergy
     live "/patients/:id/next_of_kin", PatientLive.Show, :add_next_of_kin
+    live "/patients/:id/next_of_kin/:next_of_kin_id/edit", PatientLive.Show, :edit_next_of_kin
 
 
 

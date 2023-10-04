@@ -27,7 +27,7 @@ defmodule LifelineElixirWeb.NextofkinLive.FormComponent do
     save_nextofkin(socket, socket.assigns.action, nextofkin_params)
   end
 
-  defp save_nextofkin(socket, :edit, nextofkin_params) do
+  defp save_nextofkin(socket, :edit_next_of_kin, nextofkin_params) do
     case Nextofkins.update_nextofkin(socket.assigns.nextofkin, nextofkin_params) do
       {:ok, _nextofkin} ->
         {:noreply,

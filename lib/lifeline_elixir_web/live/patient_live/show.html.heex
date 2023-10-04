@@ -41,7 +41,7 @@
   </.modal>
 <% end %>
 
-<%= if @live_action in [:add_next_of_kin] do %>
+<%= if @live_action in [:add_next_of_kin, :edit_next_of_kin] do %>
   <.modal return_to={Routes.patient_show_path(@socket, :show, @patient)}>
     <.live_component
       module={LifelineElixirWeb.NextofkinLive.FormComponent}
@@ -119,8 +119,8 @@
      
     </li>
 
-     <%!-- <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin,@patient.id, next) %>
-     <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: next.id, data: [confirm: "Are you sure?"] %></span> --%>
+     <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin,@patient.id, next) %>
+     <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: next.id, data: [confirm: "Are you sure?"] %></span>
   <% end %> 
   
 
