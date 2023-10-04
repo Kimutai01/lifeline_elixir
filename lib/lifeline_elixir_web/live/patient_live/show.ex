@@ -5,6 +5,7 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   alias LifelineElixir.Patients
   alias LifelineElixir.Foodallergies.Foodallergy
   alias LifelineElixir.Foodallergies
+  alias LifelineElixir.Nextofkins.Nextofkin
 
   @impl true
   def mount(params, _session, socket) do
@@ -21,10 +22,12 @@ defmodule LifelineElixirWeb.PatientLive.Show do
       %Foodallergy{}
     end
 
+
     {:ok,
     socket
     |> assign(:drugallergy, drug_allergy)
-    |> assign(:foodallergy, food_allergy)}
+    |> assign(:foodallergy, food_allergy)
+    |> assign(:nextofkin, %Nextofkin{})}
   end
 
   @impl true
@@ -60,4 +63,5 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   defp page_title(:edit_allergy), do: "Edit Allergy"
   defp page_title(:add_food_allergy), do: "Add Food Allergy"
   defp page_title(:edit_food_allergy), do: "Edit Food Allergy"
+  defp page_title(:add_next_of_kin), do: "Add Next of Kin"
 end

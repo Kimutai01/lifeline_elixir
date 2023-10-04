@@ -41,6 +41,20 @@
   </.modal>
 <% end %>
 
+<%= if @live_action in [:add_next_of_kin] do %>
+  <.modal return_to={Routes.patient_show_path(@socket, :show, @patient)}>
+    <.live_component
+      module={LifelineElixirWeb.NextofkinLive.FormComponent}
+      id={@nextofkin.id || :new}
+      title={@page_title}
+      action={@live_action}
+      nextofkin={@nextofkin}
+      patient={@patient}
+      return_to={Routes.patient_show_path(@socket, :show, @patient)}
+    />
+  </.modal>
+<% end %>
+
 <ul>
 
   <li>
@@ -97,10 +111,25 @@
      <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: food.id, data: [confirm: "Are you sure?"] %></span>
   <% end %>
 
+  <%= for next <- @patient.nextofkins do %>
+    <li>
+      <strong>Next of kin:</strong>
+      <%= next.name %>
+       
+     
+    </li>
+
+     <%!-- <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin,@patient.id, next) %>
+     <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: next.id, data: [confirm: "Are you sure?"] %></span> --%>
+  <% end %> 
+  
+
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index) %></span>
 <span><%= live_patch "Add Allergy", to: Routes.patient_show_path(@socket, :add_allergy, @patient), class: "button" %></span>
+<span><%= live_patch "Add Food Allergy", to: Routes.patient_show_path(@socket, :add_food_allergy, @patient), class: "button" %></span>
+<span><%= live_patch "Add Next of Kin", to: Routes.patient_show_path(@socket, :add_next_of_kin, @patient), class: "button" %></span>
 
 

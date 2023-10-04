@@ -35,7 +35,7 @@ defmodule LifelineElixir.Patients do
       ** (Ecto.NoResultsError)
 
   """
-  def get_patient!(id), do: Repo.get!(Patient, id) |> Repo.preload(:drugallergies) |> Repo.preload(:foodallergies)
+  def get_patient!(id), do: Repo.get!(Patient, id) |> Repo.preload(:drugallergies) |> Repo.preload(:foodallergies) |> Repo.preload(:nextofkins)
 
   @doc """
   Creates a patient.

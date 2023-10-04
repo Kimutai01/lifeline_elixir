@@ -14,7 +14,7 @@ defmodule LifelineElixir.Nextofkins.Nextofkin do
   @doc false
   def changeset(nextofkin, attrs) do
     nextofkin
-    |> cast(attrs, [:name, :phone, :relationship])
-    |> validate_required([:name, :phone, :relationship])
+    |> cast(attrs, [:name, :phone, :relationship, :patient_id])
+    |> validate_required([:name, :phone, :relationship, :patient_id])
   end
 end

@@ -16,7 +16,7 @@
     <%= label f, :phone %>
     <%= text_input f, :phone %>
     <%= error_tag f, :phone %>
-  
+    <%= hidden_input f, :patient_id, value: @patient.id %>
     <%= label f, :relationship %>
     <%= text_input f, :relationship %>
     <%= error_tag f, :relationship %>
