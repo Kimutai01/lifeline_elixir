@@ -10,13 +10,15 @@ defmodule LifelineElixir.Patients.Patient do
     field :age, :integer
     field :weight, :string
 
+    belongs_to :user, LifelineElixir.Accounts.User
+
     timestamps()
   end
 
   @doc false
   def changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :national_id, :height, :age, :weight])
-    |> validate_required([:first_name, :last_name, :national_id, :height, :age, :weight])
+    |> cast(attrs, [:first_name, :last_name, :national_id, :height, :age, :weight, :user_id])
+    |> validate_required([:first_name, :last_name, :national_id, :height, :age, :weight, :user_id])
   end
 end

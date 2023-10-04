@@ -9,6 +9,7 @@ defmodule LifelineElixir.Repo.Migrations.CreatePatients do
       add :height, :string
       add :age, :integer
       add :weight, :string
+      add :user_id , references(:users,  on_delete: :delete_all)
 
       timestamps()
     end

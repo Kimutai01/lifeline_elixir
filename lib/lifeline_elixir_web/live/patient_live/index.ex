@@ -1,12 +1,19 @@
 defmodule LifelineElixirWeb.PatientLive.Index do
   use LifelineElixirWeb, :live_view
+  alias LifelineElixir.Accounts
 
   alias LifelineElixir.Patients
   alias LifelineElixir.Patients.Patient
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :patients, list_patients())}
+  def mount(_params, session, socket) do
+    IO.inspect(session)
+    current_user = Accounts.get_user_by_session_token(session["user_token"])
+    # {:ok, assign(socket, :patients,  list_patients())}
+    {:ok,
+  socket
+  |> assign(:patients, list_patients())
+  |> assign(:current_user, current_user)}
   end
 
   @impl true

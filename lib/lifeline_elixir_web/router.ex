@@ -20,7 +20,8 @@ defmodule LifelineElixirWeb.Router do
   scope "/", LifelineElixirWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
+
   end
 
   # Other scopes may use custom stacks.
@@ -78,6 +79,13 @@ defmodule LifelineElixirWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    live "/", PatientLive.Index, :index
+    live "/patients/new", PatientLive.Index, :new
+    live "/patients/:id/edit", PatientLive.Index, :edit
+
+    live "/patients/:id", PatientLive.Show, :show
+    live "/patients/:id/show/edit", PatientLive.Show, :edit
   end
 
   scope "/", LifelineElixirWeb do

@@ -41,7 +41,11 @@ defmodule LifelineElixirWeb.PatientLive.FormComponent do
   end
 
   defp save_patient(socket, :new, patient_params) do
-    case Patients.create_patient(patient_params) do
+    new_params =
+      patient_params
+      |> Map.put("user_id", socket.assigns.current_user.id)
+    IO.inspect(new_params)
+    case Patients.create_patient(new_params) do
       {:ok, _patient} ->
         {:noreply,
          socket
