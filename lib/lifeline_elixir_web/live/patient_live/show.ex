@@ -51,14 +51,16 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   def handle_event("delete",params,socket) do
     drug_allergy = Drugallergies.get_drugallergy!(params["id"])
     food_allergy = Foodallergies.get_foodallergy!(params["id"])
+    next_of_kin = Nextofkins.get_nextofkin!(params["id"])
     {:ok, _} = Drugallergies.delete_drugallergy(drug_allergy)
     {:ok, _} = Foodallergies.delete_foodallergy(food_allergy)
+    {:ok, _} = Nextofkins.delete_nextofkin(next_of_kin)
     {:noreply,
     socket
       |> assign(:drugallergy, Drugallergies.list_drugallergies())
       |> assign(:patient, Patients.get_patient!(socket.assigns.patient_id))
-      |> assign(:foodallergy, Foodallergies.list_foodallergies())}
-
+      |> assign(:foodallergy, Foodallergies.list_foodallergies())
+      |> assign(:nextofkin, Nextofkins.list_nextofkins())}
 
   end
 
