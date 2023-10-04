@@ -1,0 +1,36 @@
+<h1>Show Nextofkin</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.nextofkin_show_path(@socket, :show, @nextofkin)}>
+    <.live_component
+      module={LifelineElixirWeb.NextofkinLive.FormComponent}
+      id={@nextofkin.id}
+      title={@page_title}
+      action={@live_action}
+      nextofkin={@nextofkin}
+      return_to={Routes.nextofkin_show_path(@socket, :show, @nextofkin)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @nextofkin.name %>
+  </li>
+
+  <li>
+    <strong>Phone:</strong>
+    <%= @nextofkin.phone %>
+  </li>
+
+  <li>
+    <strong>Relationship:</strong>
+    <%= @nextofkin.relationship %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.nextofkin_show_path(@socket, :edit, @nextofkin), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.nextofkin_index_path(@socket, :index) %></span>

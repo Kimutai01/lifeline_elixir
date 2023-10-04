@@ -1,0 +1,43 @@
+<h1>Listing Nextofkins</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.nextofkin_index_path(@socket, :index)}>
+    <.live_component
+      module={LifelineElixirWeb.NextofkinLive.FormComponent}
+      id={@nextofkin.id || :new}
+      title={@page_title}
+      action={@live_action}
+      nextofkin={@nextofkin}
+      return_to={Routes.nextofkin_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Relationship</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="nextofkins">
+    <%= for nextofkin <- @nextofkins do %>
+      <tr id={"nextofkin-#{nextofkin.id}"}>
+        <td><%= nextofkin.name %></td>
+        <td><%= nextofkin.phone %></td>
+        <td><%= nextofkin.relationship %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.nextofkin_show_path(@socket, :show, nextofkin) %></span>
+          <span><%= live_patch "Edit", to: Routes.nextofkin_index_path(@socket, :edit, nextofkin) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: nextofkin.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Nextofkin", to: Routes.nextofkin_index_path(@socket, :new) %></span>
