@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-center font-2xl font-bold"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,13 +9,21 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+  <div class="flex flex-col gap-4 justify-center items-center">
+    <div class="flex flex-col">
+      <%= label(f, :name) %>
+      <%= text_input(f, :name,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :name) %>
+    </div>
     <%= hidden_input f, :patient_id, value: @patient.id %>
   
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Save", phx_disable_with: "Saving...", class: "flex  bg-blue-500 p-3 text-white rounded-md" %>
+    </div>
     </div>
   </.form>
 </div>

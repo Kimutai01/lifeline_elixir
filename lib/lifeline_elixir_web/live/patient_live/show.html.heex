@@ -142,7 +142,7 @@
         <p class="border-b-2 p-2 font-bold uppercase border-[#DCDCDC]">
           Drug Allergies
         </p>
-        <span><%= live_patch "Add Allergy", to: Routes.patient_show_path(@socket, :add_allergy, @patient), class: "p-2 font-bold uppercase" %></span>
+        <span><%= live_patch "Add Drug Allergy", to: Routes.patient_show_path(@socket, :add_allergy, @patient), class: "p-2 font-bold uppercase" %></span>
         </div>
         <div class="p-4 h-[180px] overflow-y-scroll">
           <ul class="list-disc p-2">
@@ -185,7 +185,11 @@
         <div class="p-4 h-[180px] overflow-y-scroll">
           <ul class="list-disc p-2">
             <%= for next_of_kin <- @patient.nextofkins do %>
+            <div class="flex">
               <li><%= next_of_kin.name %></li>
+              <p><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin, @patient, next_of_kin), class: "text-blue-500 p-2 font-bold uppercase" %></p>
+            </div>
+
             <% end %>
           </ul>
         </div>

@@ -2,7 +2,6 @@ defmodule LifelineElixirWeb.NextofkinLive.Show do
   use LifelineElixirWeb, :live_view
 
   alias LifelineElixir.Nextofkins
-
   @impl true
   def mount(_params, _session, socket) do
     {:ok, socket}
