@@ -6,10 +6,16 @@ defmodule LifelineElixir.Patients.Patient do
   schema "patients" do
     field :first_name, :string
     field :last_name, :string
+    field :asthmatic, :boolean, default: false
+    field :blood_group, :string
+    field :date_of_birth, :date
+    field :diabetic, :boolean, default: false
+    field :gender, :string
     field :national_id, :string
-    field :height, :string
     field :age, :integer
     field :weight, :string
+    field :telephone, :string
+    field :hypertensive, :boolean, default: false
 
     belongs_to :user, LifelineElixir.Accounts.User
     has_many :drugallergies, LifelineElixir.Drugallergies.Drugallergy
@@ -22,7 +28,35 @@ defmodule LifelineElixir.Patients.Patient do
   @doc false
   def changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :national_id, :height, :age, :weight, :user_id])
-    |> validate_required([:first_name, :last_name, :national_id, :height, :age, :weight, :user_id])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :national_id,
+      :age,
+      :weight,
+      :blood_group,
+      :user_id,
+      :diabetic,
+      :hypertensive,
+      :asthmatic,
+      :gender,
+      :date_of_birth,
+      :telephone,
+    ])
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :national_id,
+      :age,
+      :weight,
+      :user_id,
+      :diabetic,
+      :date_of_birth,
+      :telephone,
+      :hypertensive,
+      :asthmatic,
+    ])
+
   end
+  
 end

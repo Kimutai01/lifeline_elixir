@@ -13,7 +13,12 @@ defmodule LifelineElixirWeb.PatientLive.Index do
     {:ok,
   socket
   |> assign(:patients, list_patients())
-  |> assign(:current_user, current_user)}
+  |> assign(:current_user, current_user)
+  |> assign(:patient_count, Patients.total_patients())
+  |> assign(:asthma_patients, Patients.asthmatic_percentage())
+  |> assign(:diabetic_patients, Patients.diabetic_percentage())
+  |> assign(:hypertensive_patients, Patients.hypertensive_percentage())}
+
   end
 
   @impl true

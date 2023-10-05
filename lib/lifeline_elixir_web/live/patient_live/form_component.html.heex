@@ -9,29 +9,136 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :first_name %>
-    <%= text_input f, :first_name %>
-    <%= error_tag f, :first_name %>
+     <div class="flex flex-col gap-4 justify-center items-center">
+    <div class="flex flex-col">
+    
+      
+      <%= text_input(f, :first_name,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :first_name) %>
+    </div>
+
   
-    <%= label f, :last_name %>
-    <%= text_input f, :last_name %>
-    <%= error_tag f, :last_name %>
+    <div class="flex flex-col">
+      <%= label(f, :last_name) %>
+      <%= text_input(f, :last_name,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :last_name) %>
+    </div>
   
-    <%= label f, :national_id %>
-    <%= text_input f, :national_id %>
-    <%= error_tag f, :national_id %>
+    <div class="flex flex-col">
+      <p>
+        National Doctor ID
+      </p>
+      <%= number_input(f, :national_id,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :national_id) %>
+    </div>
   
-    <%= label f, :height %>
-    <%= text_input f, :height %>
-    <%= error_tag f, :height %>
   
-    <%= label f, :age %>
-    <%= number_input f, :age %>
-    <%= error_tag f, :age %>
+    
+
+    <div class="flex flex-col">
+      <p>
+        Age
+      </p>
+      <%= number_input(f, :age,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :age) %>
+    </div>
+
+    <div class="flex flex-col">
+      <p>
+       Weight
+      </p>
+      <%= text_input(f, :weight,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :weight) %>
+    </div>
   
-    <%= label f, :weight %>
-    <%= text_input f, :weight %>
-    <%= error_tag f, :weight %>
+   
+
+    <div class="flex flex-col">
+      <%= label(f, :telephone) %>
+      <%= text_input(f, :telephone,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :telephone) %>
+    </div>
+
+     <div class="flex flex-col">
+      <%= label(f, :gender) %>
+      <%= select(f, :gender, ["Select one", "male", "female", "other"],
+        class:
+          "h-12 w-[600px] p-2 my-2 border-transparent focus:border-transparent focus:ring-0 bg-gray-200 shadow-xl shadow-gray-300",
+        required: true
+      ) %>
+
+      <%= error_tag(f, :gender) %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= label(f, :blood_group) %>
+      <%= select(
+        f,
+        :blood_group,
+        ["Select one", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+        class:
+          "h-12 w-[600px] p-2 my-2 border-transparent focus:border-transparent focus:ring-0 bg-gray-200 shadow-xl shadow-gray-300",
+        required: true
+      ) %>
+
+      <%= error_tag(f, :blood_group) %>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <%= label(f, :date_of_birth) %>
+      <%= date_select(f, :date_of_birth) %>
+      <%= error_tag(f, :date_of_birth) %>
+    </div>
+
+    <p class="text-2xl text-start font-bold text-gray-700">
+      Patient's Pre Existing Conditions
+    </p>
+
+    <div class="flex gap-8">
+      <div class="flex items-center gap-2">
+        <%= label(f, :diabetic) %>
+        <%= checkbox(f, :diabetic) %>
+        <%= error_tag(f, :diabetic) %>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <%= label(f, :hypertensive) %>
+        <%= checkbox(f, :hypertensive) %>
+        <%= error_tag(f, :hypertensive) %>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <%= label(f, :asthmatic) %>
+        <%= checkbox(f, :asthmatic) %>
+        <%= error_tag(f, :asthmatic) %>
+      </div>
+    </div>
+  </div>
+
+
   
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>

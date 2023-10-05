@@ -101,4 +101,58 @@ defmodule LifelineElixir.Patients do
   def change_patient(%Patient{} = patient, attrs \\ %{}) do
     Patient.changeset(patient, attrs)
   end
+
+  def total_patients do
+    Repo.aggregate(Patient, :count, :id)
+  end
+
+  def asthmatic_percentage do
+    total_patients = from(p in Patient, where: p.asthmatic == true, select: count(p.id)) |> Repo.one()
+    all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
+
+    case {total_patients, all_patients} do
+      {nil, nil} ->
+        0.0
+      {0, _} ->
+        0.0
+      {_, 0} ->
+        0.0
+      {total, all} ->
+        (total / all) * 100
+    end
+  end
+
+  def diabetic_percentage do
+    total_patients = from(p in Patient, where: p.diabetic == true, select: count(p.id)) |> Repo.one()
+    all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
+
+    case {total_patients, all_patients} do
+      {nil, nil} ->
+        0.0
+      {0, _} ->
+        0.0
+      {_, 0} ->
+        0.0
+      {total, all} ->
+        (total / all) * 100
+    end
+  end
+
+  def hypertensive_percentage do
+    total_patients = from(p in Patient, where: p.hypertensive == true, select: count(p.id)) |> Repo.one()
+    all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
+
+    case {total_patients, all_patients} do
+      {nil, nil} ->
+        0.0
+      {0, _} ->
+        0.0
+      {_, 0} ->
+        0.0
+      {total, all} ->
+        (total / all) * 100
+    end
+  end
+
+
 end
