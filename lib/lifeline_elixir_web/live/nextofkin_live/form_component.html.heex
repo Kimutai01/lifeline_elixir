@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-center font-bold text-2xl"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,20 +9,49 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+     <div class="flex flex-col gap-4 justify-center items-center">
+    <div class="flex flex-col">
+      <%= label(f, :name) %>
+      <%= text_input(f, :name,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :name) %>
+    </div>
   
-    <%= label f, :phone %>
-    <%= text_input f, :phone %>
-    <%= error_tag f, :phone %>
+   
     <%= hidden_input f, :patient_id, value: @patient.id %>
-    <%= label f, :relationship %>
-    <%= text_input f, :relationship %>
-    <%= error_tag f, :relationship %>
+
+    <div class="flex flex-col">
+      <%= label(f, :phone) %>
+      <%= text_input(f, :phone,
+        class:
+          "h-[50px] w-[600px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+        required: true
+      ) %>
+      <%= error_tag(f, :phone) %>
+    </div>
+    
+    <div class="flex flex-col">
+      <%= label(f, :relationship) %>
+      <%= select(
+        f,
+        :relationship,
+        ["Select one", "Father", "Mother", "Brother", "Sister", "Uncle", "Aunt", "Grandfather", "Grandmother", "Other"],
+        class:
+          "h-12 w-[600px] p-2 my-2 border-transparent focus:border-transparent focus:ring-0 bg-gray-200 shadow-xl shadow-gray-300",
+        required: true
+      ) %>
+
+      <%= error_tag(f, :relationship) %>
+    </div>
+   
   
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
+    </div>
   </.form>
+
 </div>

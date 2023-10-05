@@ -11,6 +11,7 @@ defmodule LifelineElixir.Repo.Migrations.CreatePatients do
       add :blood_group, :string
       add :age, :integer
       add :gender, :string
+      add :picture, :string
       add :weight, :string
       add :diabetic, :boolean, default: false, null: false
       add :hypertensive, :boolean, default: false, null: false

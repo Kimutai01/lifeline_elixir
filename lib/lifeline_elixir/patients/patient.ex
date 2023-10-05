@@ -11,6 +11,7 @@ defmodule LifelineElixir.Patients.Patient do
     field :date_of_birth, :date
     field :diabetic, :boolean, default: false
     field :gender, :string
+    field :picture, :string
     field :national_id, :string
     field :age, :integer
     field :weight, :string
@@ -42,6 +43,7 @@ defmodule LifelineElixir.Patients.Patient do
       :gender,
       :date_of_birth,
       :telephone,
+      :picture,
     ])
     |> validate_required([
       :first_name,
@@ -55,8 +57,9 @@ defmodule LifelineElixir.Patients.Patient do
       :telephone,
       :hypertensive,
       :asthmatic,
+      :picture,
     ])
 
   end
-  
+
 end
