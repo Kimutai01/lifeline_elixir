@@ -1,27 +1,76 @@
-<h1>Log in</h1>
+<div class="flex  h-[100vh] justify-center items-center">
+  <div class="w-1/2 h-[100vh]  bg-[#00ADEE]  flex flex-col ">
+    <img
+      src={"/images/bluelogo.png"}
+      alt="doctor"
+      class="w-[100px]  m-4 object-cover"
+    />
 
-<.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+    <div class="flex flex-col items-center ">
+      <img
+        src={"/images/login.png"}
+        alt="doctor"
+        class="h-[500px] object-cover"
+      />
+      <h1 class="text-5xl py-4 font-bold text-white">WELCOME</h1>
+      <p class="text-white text-sm w-[75%] mx-auto text-center">
+        Lifeline medics is an innovation that will incorporate NFC hardware
+        and medical records to revolutionise how data is stored. We at
+        lifeline will provide smart ornaments that store medical records on
+        an easy walk around ornament le a ring. wristband
+      </p>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
-
-  <div>
-    <%= submit "Log in" %>
   </div>
-</.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+  <div class="w-1/2 p-4">
+    <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:doctor}>
+      <%= if @error_message do %>
+        <div class="alert alert-danger">
+          <p><%= @error_message %></p>
+        </div>
+      <% end %>
+
+      <div class="flex flex-col gap-4">
+        <p class="text-[#636363] text-5xl  font-bold">
+          Login
+        </p>
+
+        <%= email_input(f, :email,
+          required: true,
+          class:
+            "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+          placeholder: "Email"
+        ) %>
+
+        <%= password_input(f, :password,
+          required: true,
+          class:
+            "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  ",
+          placeholder: "Password"
+        ) %>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <%= label(f, :remember_me, "Keep me logged in for 60 days", class: "text-[#636363]") %>
+        <%= checkbox(f, :remember_me) %>
+      </div>
+
+      <p class="text-[#00ADEE]">
+        <%= link("Forgot your password?", to: Routes.user_reset_password_path(@conn, :new)) %>
+      </p>
+
+      <div class="flex items-center mt-8 justify-around p-12 gap-4">
+        <%= submit("Log in",
+          class:
+            "bg-[#00ADEE] text-white text-2xl w-[50%] h-[50px] rounded-3xl hover:scale-105 transition-all ease-in-out duration-500"
+        ) %>
+        <%= link("Register",
+          to: Routes.user_registration_path(@conn, :new),
+          class:
+            "border-[#00ADEE] border-2 hover:scale-105 transition-all ease-in-out duration-500 text-[#00ADEE] text-2xl w-[50%] flex justify-center items-center h-[50px] rounded-3xl"
+        ) %>
+      </div>
+    </.form>
+  </div>
+</div>
+
