@@ -1,26 +1,139 @@
-<h1>Register</h1>
+<div class="flex  h-[100vh] justify-center ">
+  <div class="w-1/2 h-[100vh]  bg-[#DCF1F6]  flex flex-col ">
+    <img
+      src={"/images/logo.png"}
+      alt="doctor"
+      class="w-[100px]  m-4 object-cover"
+    />
 
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <div class="flex flex-col items-center ">
+      <img
+        src={"/images/signupbg.png"}
+        alt="doctor"
+        class="h-[500px] object-cover"
+      />
+      <h1 class="text-5xl py-4 font-bold text-[#01ACEC]">WELCOME</h1>
+      <p class="text-[#B3C0C3] text-sm w-[75%] mx-auto text-center">
+        Lifeline medics is an innovation that will incorporate NFC hardware
+        and medical records to revolutionise how data is stored. We at
+        lifeline will provide smart ornaments that store medical records on
+        an easy walk around ornament le a ring. wristband
+      </p>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Register" %>
   </div>
-</.form>
+  <div class="w-1/2 p-4">
+    <p class="text-[#636363] text-3xl font-bold">Sign Up</p>
+    <p class="text-[#6C6C6C]">
+      Welcome on board Lets get you an account for getting full exclusive
+      features on the web
+    </p>
+    <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
+      <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
 
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="flex flex-col gap-1">
+          <%= label(f, :first_name) %>
+          <%= text_input(f, :first_name,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :first_name) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :last_name) %>
+
+          <%= text_input(f, :last_name,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :last_name) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :email) %>
+          <%= email_input(f, :email,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :email) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :phone_number) %>
+          <%= number_input(f, :phone_number,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+
+          <%= error_tag(f, :phone_number) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :hospital_name) %>
+
+          <%= text_input(f, :hospital_name,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :hospital_name) %>
+        </div>
+        <div class="flex flex-col gap-1">
+          <p>
+            National Doctor ID
+          </p>
+
+          <%= number_input(f, :national_doctor_id,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :national_doctor_id) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :password) %>
+          <%= password_input(f, :password,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :password) %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= label(f, :password_confirmation) %>
+          <%= password_input(f, :password_confirmation,
+            required: true,
+            class:
+              "h-[50px] p-2  my-2 border-transparent focus:border-transparent focus:ring-0 bg-[#F2F2F2] shadow-xl shadow-[#E1DFDF]  "
+          ) %>
+          <%= error_tag(f, :password_confirmation) %>
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-12 items-center justify-center ">
+        <%= submit("Sign Up",
+          class:
+            "bg-[#00ADEE] text-white hover:scale-105 transition-all ease-in-out duration-500 text-2xl w-[70%] h-[50px] rounded-3xl"
+        ) %>
+        <p class="text-[#636363] text-xl mt-4">
+          Already have an account ? <%= link("Log in",
+            to: Routes.user_session_path(@conn, :new),
+            class: "text-[#00ADEE]"
+          ) %>
+        </p>
+      </div>
+    </.form>
+  </div>
+</div>
+

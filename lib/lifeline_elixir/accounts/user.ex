@@ -6,6 +6,14 @@ defmodule LifelineElixir.Accounts.User do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
+
+    field :last_name, :string
+    field :first_name, :string
+    field :phone_number, :integer
+    field :password_confirmation, :string, redact: true
+    field :national_doctor_id, :integer
+    field :hospital_name, :string
+
     field :confirmed_at, :naive_datetime
 
     has_many :patients, LifelineElixir.Patients.Patient
@@ -32,9 +40,27 @@ defmodule LifelineElixir.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [
+      :email,
+      :password ,
+      :password_confirmation,
+      :first_name,
+      :last_name,
+      :phone_number,
+      :national_doctor_id,
+      :hospital_name])
     |> validate_email()
     |> validate_password(opts)
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :phone_number,
+      :national_doctor_id,
+      :hospital_name
+    ])
+    |> unique_constraint(:email)
+    |> unique_constraint(:national_doctor_id)
+    |> validate_confirmation(:password)
   end
 
   defp validate_email(changeset) do

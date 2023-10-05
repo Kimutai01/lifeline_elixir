@@ -10,6 +10,15 @@ import Config
 config :lifeline_elixir,
   ecto_repos: [LifelineElixir.Repo]
 
+config :tailwind, version: "3.3.3", default: [
+  args: ~w(
+    --config=tailwind.config.js
+    --input=css/app.css
+    --output=../priv/static/assets/app.css
+  ),
+  cd: Path.expand("../assets", __DIR__)
+]
+
 # Configures the endpoint
 config :lifeline_elixir, LifelineElixirWeb.Endpoint,
   url: [host: "localhost"],
