@@ -146,8 +146,11 @@
         </div>
         <div class="p-4 h-[180px] overflow-y-scroll">
           <ul class="list-disc p-2">
-            <%= for drug_allergy <- @patient.drugallergies do %>
-              <li><%= drug_allergy.name %></li>
+            <%= for drug <- @patient.drugallergies do %>
+            <div class="flex">
+              <li><%= drug.name %></li>
+              <p><%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_allergy,@patient.id, drug), class: "text-blue-500 p-2 font-bold " %></p>
+            </div>
             <% end %>
           </ul>
         </div>
@@ -159,6 +162,7 @@
     <div class="flex md:flex-row flex-col justify-around  my-4 gap-4">
       <div class="flex flex-col border-t-2  bg-[#F2F2F2] h-[200px]   border-[#FF9F45] gap-2  w-[90%] mx-auto md:mx-0 ">
       <div class="flex justify-between items-center border-b-2 border-[#DCDCDC]">
+
         <p class="p-2 font-bold uppercase ">
           Food Allergies
         </p>
@@ -166,9 +170,13 @@
         </div>
         <div class="p-4 h-[180px] overflow-y-scroll">
           <ul class="list-disc p-2">
-            <%= for food_allergy <- @patient.foodallergies do %>
-              <li><%= food_allergy.name %></li>
+            <%= for food <- @patient.foodallergies do %>
+            <div class="flex">
+              <li><%= food.name %></li>
+               <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_food_allergy,@patient.id, food), class: "text-blue-500 font-bold ml-2" %>
+               </div>
             <% end %>
+            
           </ul>
         </div>
       </div>
@@ -187,7 +195,7 @@
             <%= for next_of_kin <- @patient.nextofkins do %>
             <div class="flex">
               <li><%= next_of_kin.name %></li>
-              <p><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin, @patient, next_of_kin), class: "text-blue-500 p-2 font-bold uppercase" %></p>
+              <p><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin, @patient, next_of_kin), class: "text-blue-500 p-2 font-bold " %></p>
             </div>
 
             <% end %>
