@@ -22,7 +22,6 @@ defmodule LifelineElixirWeb.PatientLive.Show do
     else
       %Foodallergy{}
     end
-
     next_of_kin = if params["next_of_kin_id"] do
       Nextofkins.get_nextofkin!(params["next_of_kin_id"])
     else

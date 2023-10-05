@@ -163,9 +163,7 @@
         <%= for patient <- @patients do %>
           <tr class="bg-[#F2F2F2] text-gray-500 border-b-2 border-[#E1E1E1]">
             <td>
-              <%!-- <%= img_tag(LifelinePhoenix.FileImage.url({patient.picture, patient}, signed: true),
-                class: "h-[100px] w-[100px]"
-              ) %> --%>
+              
             </td>
             <td>
               <%= link(patient.first_name, to: Routes.patient_show_path(@socket, :show, patient)) %>
