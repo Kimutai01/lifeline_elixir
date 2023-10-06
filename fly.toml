@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for lifelinelix on 2023-10-06T05:41:42+03:00
+# fly.toml app configuration file generated for quiet-dew-685 on 2023-10-06T06:55:40+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "lifelinelix"
+app = "quiet-dew-685"
 primary_region = "lhr"
 kill_signal = "SIGTERM"
 swap_size_mb = 512
@@ -14,7 +14,7 @@ swap_size_mb = 512
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "lifelinelix.fly.dev"
+  PHX_HOST = "quiet-dew-685.fly.dev"
   PORT = "8080"
 
 [http_service]
