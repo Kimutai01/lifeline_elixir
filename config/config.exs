@@ -18,7 +18,6 @@ config :tailwind, version: "3.3.3", default: [
   ),
   cd: Path.expand("../assets", __DIR__)
 ]
-
 # Configures the endpoint
 config :lifeline_elixir, LifelineElixirWeb.Endpoint,
   url: [host: "localhost"],

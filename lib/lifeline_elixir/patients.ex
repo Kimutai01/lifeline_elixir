@@ -138,6 +138,21 @@ defmodule LifelineElixir.Patients do
     end
   end
 
+  def get_patients_for_doctor(doctor_id) do
+  from(p in Patient,
+       where: p.user_id == ^doctor_id,
+       select: p)
+  |> Repo.all()
+  end
+
+  def get_patients_for_doctor_count(doctor_id) do
+  from(p in Patient,
+       where: p.user_id == ^doctor_id,
+       select: count(p.id))
+  |> Repo.one()
+  end
+
+
   def hypertensive_percentage do
     total_patients = from(p in Patient, where: p.hypertensive == true, select: count(p.id)) |> Repo.one()
     all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()

@@ -7,17 +7,19 @@ defmodule LifelineElixirWeb.PatientLive.Index do
 
   @impl true
   def mount(_params, session, socket) do
-    IO.inspect(session)
+    IO.inspect(socket)
     current_user = Accounts.get_user_by_session_token(session["user_token"])
+
     # {:ok, assign(socket, :patients,  list_patients())}
     {:ok,
   socket
   |> assign(:patients, list_patients())
   |> assign(:current_user, current_user)
-  |> assign(:patient_count, Patients.total_patients())
+  |> assign(:patient_count, Patients.get_patients_for_doctor_count(current_user.id))
   |> assign(:asthma_patients, Patients.asthmatic_percentage())
   |> assign(:diabetic_patients, Patients.diabetic_percentage())
-  |> assign(:hypertensive_patients, Patients.hypertensive_percentage())}
+  |> assign(:hypertensive_patients, Patients.hypertensive_percentage())
+  |>assign(:doctor_patients, Patients.get_patients_for_doctor(current_user.id))}
 
   end
 
