@@ -175,6 +175,7 @@
             <div class="flex">
               <li><%= food.name %></li>
                <%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_food_allergy,@patient.id, food), class: "text-blue-500 font-bold ml-2" %>
+                <p class="text-red-500 p-2 font-bold cursor-pointer" phx-click="delete" phx-value-foodallergy={food.id}>Delete</p>
                </div>
             <% end %>
             
@@ -197,6 +198,7 @@
             <div class="flex">
               <li><%= next_of_kin.name %></li>
               <p><%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin,@patient.id, next_of_kin), class: "text-blue-500 p-2 font-bold " %></p>
+              <p class="text-red-500 p-2 font-bold cursor-pointer" phx-click="delete" phx-value-nextofkin={next_of_kin.id}>Delete</p>
             </div>
 
             <% end %>
