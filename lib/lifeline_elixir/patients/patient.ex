@@ -28,6 +28,8 @@ defmodule LifelineElixir.Patients.Patient do
 
   @doc false
   def changeset(patient, attrs) do
+    IO.inspect(attrs)
+    IO.inspect(patient)
     patient
     |> cast(attrs, [
       :first_name,
@@ -59,6 +61,7 @@ defmodule LifelineElixir.Patients.Patient do
       :asthmatic,
       :picture,
     ])
+
 
   end
 

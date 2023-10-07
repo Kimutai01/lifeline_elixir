@@ -39,6 +39,8 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
     patient_id = String.to_integer(id)
+    patients = Patients.get_patient!(id)
+    IO.inspect(patients)
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
@@ -47,19 +49,14 @@ defmodule LifelineElixirWeb.PatientLive.Show do
   end
 
   @impl true
-  def handle_event("delete",params,socket) do
-    drug_allergy = Drugallergies.get_drugallergy!(params["id"])
-    food_allergy = Foodallergies.get_foodallergy!(params["id"])
-    next_of_kin = Nextofkins.get_nextofkin!(params["id"])
+  def handle_event("delete",%{"drugallergy" => drugallergy},socket) do
+    drug_allergy = Drugallergies.get_drugallergy!(drugallergy)
     {:ok, _} = Drugallergies.delete_drugallergy(drug_allergy)
-    {:ok, _} = Foodallergies.delete_foodallergy(food_allergy)
-    {:ok, _} = Nextofkins.delete_nextofkin(next_of_kin)
+    IO.inspect(Patients.get_patient!(socket.assigns.patient_id))
     {:noreply,
     socket
       |> assign(:drugallergy, Drugallergies.list_drugallergies())
-      |> assign(:patient, Patients.get_patient!(socket.assigns.patient_id))
-      |> assign(:foodallergy, Foodallergies.list_foodallergies())
-      |> assign(:nextofkin, Nextofkins.list_nextofkins())}
+      |> assign(:patient, Patients.get_patient!(socket.assigns.patient_id))}
 
   end
 

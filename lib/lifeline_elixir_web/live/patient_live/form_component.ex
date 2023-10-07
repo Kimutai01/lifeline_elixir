@@ -42,6 +42,7 @@ defmodule LifelineElixirWeb.PatientLive.FormComponent do
   end
 
   defp save_patient(socket, :edit, patient_params) do
+    IO.inspect(patient_params)
     case Patients.update_patient(socket.assigns.patient, patient_params) do
       {:ok, _patient} ->
         {:noreply,

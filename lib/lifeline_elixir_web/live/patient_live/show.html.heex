@@ -150,6 +150,7 @@
             <div class="flex">
               <li><%= drug.name %></li>
               <p><%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_allergy,@patient.id, drug), class: "text-blue-500 p-2 font-bold " %></p>
+              <p class="text-red-500 p-2 font-bold cursor-pointer" phx-click="delete" phx-value-drugallergy={drug.id}>Delete</p>
             </div>
             <% end %>
           </ul>
@@ -195,7 +196,7 @@
             <%= for next_of_kin <- @patient.nextofkins do %>
             <div class="flex">
               <li><%= next_of_kin.name %></li>
-              <p><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin, @patient, next_of_kin), class: "text-blue-500 p-2 font-bold " %></p>
+              <p><%= live_redirect "Edit", to: Routes.patient_show_path(@socket, :edit_next_of_kin,@patient.id, next_of_kin), class: "text-blue-500 p-2 font-bold " %></p>
             </div>
 
             <% end %>
@@ -235,7 +236,9 @@
 
         <p class="bg-[#DCDCDC] cursor-pointer uppercase font-semibold p-2 text-center">
           <%= link("Update Pre Existing Condition",
-            to: Routes.patient_show_path(@socket, :edit, @patient)
+            to: Routes.patient_show_path(@socket, :edit, @patient),
+            class: "text-[#2400FF] "
+
           ) %>
         </p>
       </div>
