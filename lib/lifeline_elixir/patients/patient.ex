@@ -61,6 +61,7 @@ defmodule LifelineElixir.Patients.Patient do
       :asthmatic,
       :picture,
     ])
+    |> unique_constraint(:national_id)
 
 
   end

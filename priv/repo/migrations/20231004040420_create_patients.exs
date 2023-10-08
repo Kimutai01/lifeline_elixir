@@ -5,9 +5,9 @@ defmodule LifelineElixir.Repo.Migrations.CreatePatients do
     create table(:patients) do
       add :first_name, :string
       add :last_name, :string
-      add :national_id, :string
+      add :national_id, :string, null: false, unique: true
       add :date_of_birth, :date
-      add :telephone, :string
+      add :telephone, :string, null: false
       add :blood_group, :string
       add :age, :integer
       add :gender, :string

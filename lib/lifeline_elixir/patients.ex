@@ -73,6 +73,7 @@ defmodule LifelineElixir.Patients do
     |> Repo.update()
   end
 
+
   @doc """
   Deletes a patient.
 
@@ -106,10 +107,29 @@ defmodule LifelineElixir.Patients do
     Repo.aggregate(Patient, :count, :id)
   end
 
-  def asthmatic_percentage do
-    total_patients = from(p in Patient, where: p.asthmatic == true, select: count(p.id)) |> Repo.one()
-    all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
+  defp base_query(doctor_id) do
+    from p in Patient,
+    where: p.user_id == ^doctor_id
+  end
 
+  # defp all_patients_query do
+  #   from p in Patient
+  #   select: count(p.id)
+  #   |> Repo.one()
+  # end
+
+  def get_patients_for_doctor(doctor_id) do
+    base_query(doctor_id)
+    |> Repo.all()
+  end
+
+
+  def get_patients_for_doctor_count(doctor_id) do
+    base_query(doctor_id)
+    |> Repo.aggregate(:count, :id)
+  end
+
+  defp percentage(total_patients, all_patients) do
     case {total_patients, all_patients} do
       {nil, nil} ->
         0.0
@@ -120,53 +140,27 @@ defmodule LifelineElixir.Patients do
       {total, all} ->
         (total / all) * 100
     end
+  end
+
+
+  def asthmatic_percentage do
+    total_patients = from(p in Patient, where: p.asthmatic == true, select: count(p.id)) |> Repo.one()
+    all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
+
+    percentage(total_patients, all_patients)
   end
 
   def diabetic_percentage do
     total_patients = from(p in Patient, where: p.diabetic == true, select: count(p.id)) |> Repo.one()
     all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
-
-    case {total_patients, all_patients} do
-      {nil, nil} ->
-        0.0
-      {0, _} ->
-        0.0
-      {_, 0} ->
-        0.0
-      {total, all} ->
-        (total / all) * 100
-    end
-  end
-
-  def get_patients_for_doctor(doctor_id) do
-  from(p in Patient,
-       where: p.user_id == ^doctor_id,
-       select: p)
-  |> Repo.all()
-  end
-
-  def get_patients_for_doctor_count(doctor_id) do
-  from(p in Patient,
-       where: p.user_id == ^doctor_id,
-       select: count(p.id))
-  |> Repo.one()
+    percentage(total_patients, all_patients)
   end
 
 
   def hypertensive_percentage do
     total_patients = from(p in Patient, where: p.hypertensive == true, select: count(p.id)) |> Repo.one()
     all_patients = from(p in Patient, select: count(p.id)) |> Repo.one()
-
-    case {total_patients, all_patients} do
-      {nil, nil} ->
-        0.0
-      {0, _} ->
-        0.0
-      {_, 0} ->
-        0.0
-      {total, all} ->
-        (total / all) * 100
-    end
+    percentage(total_patients, all_patients)
   end
 
 

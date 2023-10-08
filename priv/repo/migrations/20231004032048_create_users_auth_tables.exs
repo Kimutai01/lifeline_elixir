@@ -10,9 +10,9 @@ defmodule LifelineElixir.Repo.Migrations.CreateUsersAuthTables do
       add :password_confirmation, :string, null: false
       add :first_name, :string
       add :last_name, :string
-      add :phone_number, :bigint
-      add :national_doctor_id, :integer
-      add :hospital_name, :string
+      add :phone_number, :bigint, null: false
+      add :national_doctor_id, :integer, null: false
+      add :hospital_name, :string, null: false
       add :confirmed_at, :naive_datetime
       timestamps()
     end
