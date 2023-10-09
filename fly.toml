@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for quiet-dew-685 on 2023-10-08T10:34:24+03:00
+# fly.toml app configuration file generated for summer-violet-962 on 2023-10-09T07:18:46+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "quiet-dew-685"
-primary_region = "lhr"
+app = "summer-violet-962"
+primary_region = "lax"
 kill_signal = "SIGTERM"
 swap_size_mb = 512
 
@@ -14,7 +14,7 @@ swap_size_mb = 512
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "quiet-dew-685.fly.dev"
+  PHX_HOST = "summer-violet-962.fly.dev"
   PORT = "8080"
 
 [http_service]
