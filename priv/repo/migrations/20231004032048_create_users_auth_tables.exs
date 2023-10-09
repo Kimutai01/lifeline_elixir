@@ -8,16 +8,16 @@ defmodule LifelineElixir.Repo.Migrations.CreateUsersAuthTables do
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
       add :password_confirmation, :string, null: false
-      add :first_name, :string
-      add :last_name, :string
-      add :phone_number, :bigint, null: false
-      add :national_doctor_id, :integer, null: false
+      add :first_name, :string, null: false
+      add :last_name, :string, null: false
+      add :phone_number, :bigint, null: false, unique: true
+      add :national_doctor_id, :integer, null: false, unique: true
       add :hospital_name, :string, null: false
       add :confirmed_at, :naive_datetime
       timestamps()
     end
 
-    create unique_index(:users, [:email])
+    create unique_index(:users, [:email, :national_doctor_id, :phone_number])
 
     create table(:users_tokens) do
       add :user_id, references(:users, on_delete: :delete_all), null: false

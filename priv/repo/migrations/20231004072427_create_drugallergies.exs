@@ -3,7 +3,7 @@ defmodule LifelineElixir.Repo.Migrations.CreateDrugallergies do
 
   def change do
     create table(:drugallergies) do
-      add :name, :string
+      add :name, :string, null: false
 
       add :patient_id, references(:patients, on_delete: :delete_all)
 

@@ -3,16 +3,16 @@ defmodule LifelineElixir.Repo.Migrations.CreatePatients do
 
   def change do
     create table(:patients) do
-      add :first_name, :string
-      add :last_name, :string
+      add :first_name, :string, null: false
+      add :last_name, :string, null: false
       add :national_id, :string, null: false, unique: true
-      add :date_of_birth, :date
+      add :date_of_birth, :date, null: false
       add :telephone, :string, null: false
-      add :blood_group, :string
-      add :age, :integer
-      add :gender, :string
-      add :picture, :string
-      add :weight, :string
+      add :blood_group, :string, null: false
+      add :age, :integer, null: false
+      add :gender, :string, null: false
+      add :picture, :string, null: false
+      add :weight, :string, null: false
       add :diabetic, :boolean, default: false, null: false
       add :hypertensive, :boolean, default: false, null: false
       add :asthmatic, :boolean, default: false, null: false
@@ -20,5 +20,8 @@ defmodule LifelineElixir.Repo.Migrations.CreatePatients do
 
       timestamps()
     end
+    create unique_index(:patients, [:national_id])
+
+
   end
 end

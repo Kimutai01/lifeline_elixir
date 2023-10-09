@@ -129,6 +129,7 @@ defmodule LifelineElixir.Patients do
     |> Repo.aggregate(:count, :id)
   end
 
+
   defp percentage(total_patients, all_patients) do
     case {total_patients, all_patients} do
       {nil, nil} ->
